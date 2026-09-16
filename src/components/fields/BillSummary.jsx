@@ -9,4 +9,6 @@ function BillSummary({ currency, nightlyPrice, nights, advance }) {
   )
 }
 
+// Nikhil Tanpure
+
 export default BillSummary
