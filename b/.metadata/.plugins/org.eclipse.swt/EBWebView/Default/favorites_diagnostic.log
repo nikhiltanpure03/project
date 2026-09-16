@@ -1,0 +1,21 @@
+2026-09-16 09:36:39.633: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-09-16 09:39:55.365: [INFO] CurrentProfilePath: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-09-16 09:39:55.365: [INFO] Profiles total count: 1
+2026-09-16 09:39:55.365: [INFO] Profile: name=Profile 1 path=F:\New Project\Full\b\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-09-16T09:27:00.579Z
+2026-09-16 09:39:55.365: [INFO] LastUsedProfileDir: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-09-16 09:39:55.365: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=F:\New Project\Full\b\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-09-16T09:27:00.579Z
+2026-09-16 09:39:55.365: [INFO] OnDoneLoading sync enabled: 0
+2026-09-16 09:39:55.365: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-09-16 09:39:55.365: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-09-16 09:39:55.365: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-09-16 09:40:12.147: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-09-16 09:40:13.683: [INFO] CurrentProfilePath: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-09-16 09:40:13.683: [INFO] Profiles total count: 1
+2026-09-16 09:40:13.683: [INFO] Profile: name=Profile 1 path=F:\New Project\Full\b\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-09-16T09:39:59.269Z
+2026-09-16 09:40:13.683: [INFO] LastUsedProfileDir: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-09-16 09:40:13.683: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=F:\New Project\Full\b\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-09-16T09:39:59.269Z
+2026-09-16 09:40:13.683: [INFO] OnDoneLoading sync enabled: 0
+2026-09-16 09:40:13.683: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-09-16 09:40:13.683: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-09-16 09:40:13.683: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-09-16 10:52:22.353: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
