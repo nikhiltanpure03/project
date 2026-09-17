@@ -5,12 +5,13 @@ import { createBooking, getListingById } from '../api/listingApi'
 import BookingFields from '../components/booking/BookingFields'
 import BillingFields from '../components/booking/BillingFields'
 import PaymentFields from '../components/booking/PaymentFields'
+import { getCurrentAccount } from '../services/auth'
 
 function ListingDetailPage() {
   const { id } = useParams()
   const [stay, setStay] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [booking, setBooking] = useState({ guestName: '', checkIn: '', checkOut: '', guests: 2, card: '', guestType: 'indian' })
+  const [booking, setBooking] = useState({ guestName: '', mobileNumber: '', idProofType: '', idProofNumber: '', checkIn: '', checkOut: '', guests: 2, card: '', guestType: 'indian' })
   const [paid, setPaid] = useState(false)
   const [savingBooking, setSavingBooking] = useState(false)
   const [bookingError, setBookingError] = useState('')
@@ -27,14 +28,25 @@ function ListingDetailPage() {
     setBookingError('')
 
     try {
+      const account = getCurrentAccount()
+      if (!account) {
+        setBookingError('Please sign in before booking this stay.')
+        return
+      }
       await createBooking({
         listingId: stay.id,
         listing: stay,
+        accountId: account.id,
+        accountName: account.name,
+        accountEmail: account.email,
         checkIn: booking.checkIn,
         checkOut: booking.checkOut,
         billing: {
           guestName: booking.guestName.trim(),
           guestType: booking.guestType,
+          mobileNumber: booking.mobileNumber.trim(),
+          idProofType: booking.idProofType,
+          idProofNumber: booking.idProofNumber.trim(),
           guests: Number(booking.guests),
         },
         payment: {
@@ -208,9 +220,9 @@ function ListingDetailPage() {
           </ul>
           <div className="advance-booking">
             <BookingFields checkIn={booking.checkIn} checkOut={booking.checkOut} guests={booking.guests} onChange={updateBooking} />
-            <BillingFields guestName={booking.guestName} guestType={booking.guestType} onChange={updateBooking} onGuestTypeChange={(guestType) => setBooking((current) => ({ ...current, guestType }))} />
+            <BillingFields guestName={booking.guestName} guestType={booking.guestType} mobileNumber={booking.mobileNumber} idProofType={booking.idProofType} idProofNumber={booking.idProofNumber} onChange={updateBooking} onGuestTypeChange={(guestType) => setBooking((current) => ({ ...current, guestType }))} />
             <PaymentFields card={booking.card} onChange={updateBooking} currency={currency} nightlyPrice={nightlyPrice} nights={nights} advance={advance} />
-            <button type="button" className="primary-btn" disabled={!booking.guestName.trim() || !nights || !booking.card || savingBooking} onClick={submitBooking}>{savingBooking ? 'Saving booking...' : `Pay advance ${currency}${(advance || nightlyPrice).toLocaleString()}`}</button>
+            <button type="button" className="primary-btn" disabled={!booking.guestName.trim() || !booking.mobileNumber.trim() || !booking.idProofType || !booking.idProofNumber.trim() || !nights || !booking.card || savingBooking} onClick={submitBooking}>{savingBooking ? 'Saving booking...' : `Pay advance ${currency}${(advance || nightlyPrice).toLocaleString()}`}</button>
             {bookingError && <p className="booking-error" role="alert">{bookingError}</p>}
             <small className="payment-note">Demo payment only. No real card is charged.</small>
           </div>

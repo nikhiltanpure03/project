@@ -8,19 +8,21 @@ import AboutPage from './pages/AboutPage'
 import LoginPage from './pages/LoginPage'
 import UserPage from './pages/UserPage'
 import AdminBookingsPage from './pages/AdminBookingsPage'
+import AdminDashboardPage from './pages/AdminDashboardPage'
 import Footer from './components/Footer'
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/discover" element={<DiscoverPage />} />
         <Route path="/experiences" element={<ExperiencesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/user" element={<UserPage />} />
         <Route path="/admin/bookings" element={<AdminBookingsPage />} />
+        <Route path="/admin" element={<AdminDashboardPage />} />
         <Route path="/listing/:id" element={<ListingDetailPage />} />
       </Routes>
       <Footer />

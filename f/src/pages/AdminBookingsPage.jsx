@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Header from '../components/Header'
-import { deleteBooking, getBookings } from '../api/listingApi'
+import { deleteBooking, getAccountBookings, getBookings } from '../api/listingApi'
+import { getCurrentAccount } from '../services/auth'
 
 function formatDate(value) {
   return value ? new Date(`${value}T00:00:00`).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Not selected'
@@ -10,7 +11,14 @@ function formatMoney(payment) {
   return `${payment?.currency || ''}${Number(payment?.totalPaid || 0).toLocaleString()}`
 }
 
+function maskProof(value) {
+  if (!value) return 'Not provided'
+  return value.length > 4 ? `•••• ${value.slice(-4)}` : '••••'
+}
+
 function AdminBookingsPage() {
+  const account = getCurrentAccount()
+  const isAdmin = account?.role === 'ADMIN'
   const [bookings, setBookings] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -19,12 +27,13 @@ function AdminBookingsPage() {
   const loadBookings = () => {
     setLoading(true)
     setError('')
-    getBookings()
+    const request = isAdmin ? getBookings() : account ? getAccountBookings(account.id) : Promise.reject(new Error('Sign in required'))
+    request
       .then((response) => {
         setBookings(response.data)
         setSelectedBooking(null)
       })
-      .catch(() => setError('Bookings could not be loaded. Check that the backend is running.'))
+      .catch(() => setError(account ? 'Bookings could not be loaded. Check that the backend is running.' : 'Please sign in to view your bookings.'))
       .finally(() => setLoading(false))
   }
 
@@ -49,8 +58,8 @@ function AdminBookingsPage() {
         <div className="admin-heading">
           <div>
             <p className="eyebrow dark">Operations</p>
-            <h1>All bookings</h1>
-            <p>Review confirmed stays, guest dates, and payment totals. Total bookings: {bookings.length}.</p>
+            <h1>{isAdmin ? 'All bookings' : 'My bookings'}</h1>
+            <p>{isAdmin ? 'Review every confirmed stay and payment total.' : 'Review your confirmed stays and payment totals.'} Total bookings: {bookings.length}.</p>
           </div>
           <div className="admin-actions"><button type="button" className="secondary-btn" onClick={loadBookings}>Refresh</button></div>
         </div>
@@ -79,7 +88,7 @@ function AdminBookingsPage() {
                 {bookings.map((booking) => (
                   <tr key={booking.id}>
                     <td><strong>{booking.listingTitle}</strong><span>Booking #{booking.id}</span></td>
-                    <td>{booking.billing?.guestName || 'Not provided'}</td>
+                    <td>{booking.billing?.guestName || booking.accountName || 'Not provided'}<span>{booking.billing?.mobileNumber || 'Mobile not provided'}</span><span>{booking.accountEmail || ''}</span></td>
                     <td>{formatDate(booking.checkIn)}<span>to {formatDate(booking.checkOut)}</span></td>
                     <td>{booking.billing?.guests}</td>
                     <td>{booking.billing?.guestType === 'indian' ? 'Indian' : 'International'}</td>
@@ -87,7 +96,7 @@ function AdminBookingsPage() {
                     <td>{booking.payment?.currency}{Number(booking.payment?.totalPaid || 0).toLocaleString()}</td>
                     <td>•••• {booking.payment?.cardLastFour}</td>
                     <td>{booking.createdAt ? new Date(booking.createdAt).toLocaleDateString('en-GB') : '—'}</td>
-                    <td><div className="booking-actions"><button type="button" className="secondary-btn" onClick={() => setSelectedBooking(selectedBooking?.id === booking.id ? null : booking)}>{selectedBooking?.id === booking.id ? 'Hide' : 'View'}</button><button type="button" className="secondary-btn" onClick={() => printBill(booking)}>Print bill</button><button type="button" className="remove-booking-btn" onClick={() => removeBooking(booking.id)}>Remove</button></div></td>
+                    <td><div className="booking-actions"><button type="button" className="secondary-btn" onClick={() => setSelectedBooking(selectedBooking?.id === booking.id ? null : booking)}>{selectedBooking?.id === booking.id ? 'Hide' : 'View'}</button><button type="button" className="secondary-btn" onClick={() => printBill(booking)}>Print bill</button>{isAdmin && <button type="button" className="remove-booking-btn" onClick={() => removeBooking(booking.id)}>Remove</button>}</div></td>
                   </tr>
                 ))}
               </tbody>
@@ -98,7 +107,7 @@ function AdminBookingsPage() {
           <div className="booking-detail-heading"><div><p className="eyebrow dark">Complete record</p><h2>Booking #{selectedBooking.id}</h2></div><button type="button" className="secondary-btn" onClick={() => printBill(selectedBooking)}>Print bill</button></div>
           <div className="booking-detail-columns">
             <div><h3>Booking</h3><p><strong>Stay</strong>{selectedBooking.listingTitle}</p><p><strong>Listing ID</strong>{selectedBooking.listingId}</p><p><strong>Check-in</strong>{formatDate(selectedBooking.checkIn)}</p><p><strong>Check-out</strong>{formatDate(selectedBooking.checkOut)}</p><p><strong>Booking status</strong>{selectedBooking.status || 'CONFIRMED'}</p><p><strong>Created</strong>{selectedBooking.createdAt ? new Date(selectedBooking.createdAt).toLocaleString('en-GB') : '—'}</p></div>
-            <div><h3>Billing</h3><p><strong>Name</strong>{selectedBooking.billing?.guestName || 'Not provided'}</p><p><strong>Guest type</strong>{selectedBooking.billing?.guestType || '—'}</p><p><strong>Guests</strong>{selectedBooking.billing?.guests || '—'}</p></div>
+            <div><h3>Billing</h3><p><strong>Name</strong>{selectedBooking.billing?.guestName || 'Not provided'}</p><p><strong>Mobile</strong>{selectedBooking.billing?.mobileNumber || 'Not provided'}</p><p><strong>ID proof</strong>{selectedBooking.billing?.idProofType || '—'} {maskProof(selectedBooking.billing?.idProofNumber)}</p><p><strong>Guest type</strong>{selectedBooking.billing?.guestType || '—'}</p><p><strong>Guests</strong>{selectedBooking.billing?.guests || '—'}</p></div>
             <div><h3>Payment</h3><p><strong>Payment status</strong>{selectedBooking.payment?.status || 'PAID'}</p><p><strong>Nightly price</strong>{selectedBooking.payment?.currency}{Number(selectedBooking.payment?.nightlyPrice || 0).toLocaleString()}</p><p><strong>Subtotal</strong>{selectedBooking.payment?.currency}{Number(selectedBooking.payment?.subtotal || 0).toLocaleString()}</p><p><strong>Service fee</strong>{selectedBooking.payment?.currency}{Number(selectedBooking.payment?.serviceFee || 0).toLocaleString()}</p><p><strong>Taxes</strong>{selectedBooking.payment?.currency}{Number(selectedBooking.payment?.taxes || 0).toLocaleString()}</p><p><strong>Total paid</strong>{formatMoney(selectedBooking.payment)}</p><p><strong>Card</strong>•••• {selectedBooking.payment?.cardLastFour || '—'}</p></div>
           </div>
         </section>}

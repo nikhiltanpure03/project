@@ -13,6 +13,9 @@ public class Billing {
 	private Integer id;
 	private String guestName;
 	private String guestType;
+	private String mobileNumber;
+	private String idProofType;
+	private String idProofNumber;
 	private Integer guests;
 
 	public Billing() {
@@ -24,6 +27,12 @@ public class Billing {
 	public void setGuestName(String guestName) { this.guestName = guestName; }
 	public String getGuestType() { return guestType; }
 	public void setGuestType(String guestType) { this.guestType = guestType; }
+	public String getMobileNumber() { return mobileNumber; }
+	public void setMobileNumber(String mobileNumber) { this.mobileNumber = mobileNumber; }
+	public String getIdProofType() { return idProofType; }
+	public void setIdProofType(String idProofType) { this.idProofType = idProofType; }
+	public String getIdProofNumber() { return idProofNumber; }
+	public void setIdProofNumber(String idProofNumber) { this.idProofNumber = idProofNumber; }
 	public Integer getGuests() { return guests; }
 	public void setGuests(Integer guests) { this.guests = guests; }
 }

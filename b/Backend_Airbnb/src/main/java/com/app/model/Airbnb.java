@@ -20,10 +20,13 @@ public class Airbnb {
 	private String tag;
 	private String title;
 	private String location;
+	private String country;
+	private String state;
 	private Integer price;
 	private Double rating;
 	private Integer reviews;
 	private String image;
+	private Boolean archived = false;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "airbnb")
@@ -70,6 +73,11 @@ public class Airbnb {
 		return location;
 	}
 
+	public String getCountry() { return country; }
+	public void setCountry(String country) { this.country = country; }
+	public String getState() { return state; }
+	public void setState(String state) { this.state = state; }
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
@@ -105,6 +113,9 @@ public class Airbnb {
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+	public Boolean getArchived() { return archived; }
+	public void setArchived(Boolean archived) { this.archived = archived; }
 
 	public List<Booking> getBookings() {
 		return bookings;

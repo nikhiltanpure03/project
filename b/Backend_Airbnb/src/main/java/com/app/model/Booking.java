@@ -24,10 +24,14 @@ public class Booking {
 	private Integer id;
 	private Integer listingId;
 	private String listingTitle;
+	private String listingLocation;
 	private LocalDate checkIn;
 	private LocalDate checkOut;
 	private LocalDateTime createdAt;
 	private String status;
+	private Integer accountId;
+	private String accountName;
+	private String accountEmail;
 
 	@Transient
 	@JsonProperty(value = "listing", access = JsonProperty.Access.WRITE_ONLY)
@@ -53,6 +57,8 @@ public class Booking {
 	public void setListingId(Integer listingId) { this.listingId = listingId; }
 	public String getListingTitle() { return listingTitle; }
 	public void setListingTitle(String listingTitle) { this.listingTitle = listingTitle; }
+	public String getListingLocation() { return listingLocation; }
+	public void setListingLocation(String listingLocation) { this.listingLocation = listingLocation; }
 	public LocalDate getCheckIn() { return checkIn; }
 	public void setCheckIn(LocalDate checkIn) { this.checkIn = checkIn; }
 	public LocalDate getCheckOut() { return checkOut; }
@@ -61,6 +67,12 @@ public class Booking {
 	public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 	public String getStatus() { return status; }
 	public void setStatus(String status) { this.status = status; }
+	public Integer getAccountId() { return accountId; }
+	public void setAccountId(Integer accountId) { this.accountId = accountId; }
+	public String getAccountName() { return accountName; }
+	public void setAccountName(String accountName) { this.accountName = accountName; }
+	public String getAccountEmail() { return accountEmail; }
+	public void setAccountEmail(String accountEmail) { this.accountEmail = accountEmail; }
 	public Airbnb getListingData() { return listingData; }
 	public void setListingData(Airbnb listingData) { this.listingData = listingData; }
 	public Airbnb getAirbnb() { return airbnb; }

@@ -4,9 +4,11 @@ import StaySection from '../components/StaySection'
 import { stays } from '../data/listings'
 import SearchField from '../components/fields/SearchField'
 import { getListings } from '../api/listingApi'
+import { getCurrentAccount } from '../services/auth'
 
 const regions = ['Maharashtra', 'Goa', 'Rajasthan', 'Delhi', 'Kerala', 'United States', 'United Kingdom', 'Russia', 'Dubai', 'Japan']
 function DiscoverPage() {
+  const isAdmin = getCurrentAccount()?.role === 'ADMIN'
   const [region, setRegion] = useState('')
   const [query, setQuery] = useState('')
   const [availableStays, setAvailableStays] = useState(stays)
@@ -37,9 +39,9 @@ function DiscoverPage() {
         || (region === 'Russia' && /Russia/i.test(stay.location))
         || (region === 'Dubai' && /Dubai/i.test(stay.location))
         || (region === 'Japan' && /Japan/i.test(stay.location))
-      return matchesQuery && matchesRegion
+      return matchesQuery && (region ? matchesRegion : isAdmin)
     })
-  }, [availableStays, query, region])
+  }, [availableStays, isAdmin, query, region])
 
   const selectedLocation = region
 
@@ -50,7 +52,7 @@ function DiscoverPage() {
         <section className="page-intro">
           <div>
             <p className="eyebrow">A better place to begin</p>
-            <h1>{selectedLocation ? `Find your next stay in ${selectedLocation}.` : 'Choose a destination.'}</h1>
+            <h1>{selectedLocation ? `Find your next stay in ${selectedLocation}.` : isAdmin ? 'All locations.' : 'Choose a destination.'}</h1>
             <p>Browse considered spaces for long weekends, slow seasons, and the stories you have not written yet.</p>
           </div>
           <div className="intro-image">
@@ -62,12 +64,12 @@ function DiscoverPage() {
           <SearchField value={query} onChange={(event) => setQuery(event.target.value)} />
           <div className="filter-pills">
             {regions.map((item) => (
-              <button type="button" className={region === item ? 'filter-pill selected' : 'filter-pill'} key={item} onClick={() => setRegion(item)}>{item}</button>
+              <button type="button" className={region === item ? 'filter-pill selected' : 'filter-pill'} key={item} onClick={() => setRegion((current) => current === item ? '' : item)}>{item}</button>
             ))}
           </div>
         </section>
 
-        {selectedLocation && filteredStays.length > 0 ? <StaySection stays={filteredStays} /> : <div className="detail-empty"><h2>{selectedLocation ? 'No stays found' : 'Select a location to begin'}</h2><p>{selectedLocation ? 'Try another state or country.' : 'Choose a state or country above to see available stays.'}</p></div>}
+        {filteredStays.length > 0 && (selectedLocation || isAdmin) ? <StaySection stays={filteredStays} /> : <div className="detail-empty"><h2>{selectedLocation ? 'No stays found' : 'Select a location to begin'}</h2><p>{selectedLocation ? 'Try another state or country.' : 'Choose a state or country above to see available stays.'}</p></div>}
       </main>
     </div>
   )

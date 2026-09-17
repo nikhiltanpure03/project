@@ -16,9 +16,13 @@ public interface AirbnbServiceInterface {
 
 	public List<Booking> findAllBookings();
 
+	public List<Booking> findBookingsByAccount(Integer accountId);
+
 	public Account createAccount(Account account);
 
 	public Account findAccountById(Integer id);
+
+	public List<Account> findAllAccounts();
 
 	public Account authenticate(String email, String password);
 

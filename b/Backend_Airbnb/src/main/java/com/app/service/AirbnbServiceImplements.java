@@ -27,17 +27,20 @@ public class AirbnbServiceImplements implements AirbnbServiceInterface {
 
 	@Override
 	public List<Airbnb> findAll() {
-		return repository.findAll();
+		return repository.findAll().stream().filter(listing -> !Boolean.TRUE.equals(listing.getArchived())).toList();
 	}
 
 	@Override
 	public Airbnb findById(Integer id) {
-		return repository.findById(id).orElse(null);
+		return repository.findById(id).filter(listing -> !Boolean.TRUE.equals(listing.getArchived())).orElse(null);
 	}
 
 	@Override
 	public Booking createBooking(Booking booking) {
 		booking.setId(null);
+		if (booking.getAccountId() == null) {
+			throw new IllegalArgumentException("Please sign in before booking");
+		}
 		Airbnb listing = repository.findById(booking.getListingId()).orElse(null);
 		if (listing == null && booking.getListingData() != null) {
 			listing = booking.getListingData();
@@ -50,6 +53,7 @@ public class AirbnbServiceImplements implements AirbnbServiceInterface {
 		booking.setListingId(listing.getId());
 		booking.setAirbnb(listing);
 		booking.setListingTitle(listing.getTitle());
+		booking.setListingLocation(listing.getLocation());
 		booking.setCreatedAt(LocalDateTime.now());
 		booking.setStatus("CONFIRMED");
 		if (booking.getPayment() != null) {
@@ -64,8 +68,20 @@ public class AirbnbServiceImplements implements AirbnbServiceInterface {
 	}
 
 	@Override
+	public List<Booking> findBookingsByAccount(Integer accountId) {
+		return bookingRepository.findByAccountId(accountId);
+	}
+
+	@Override
 	public Account createAccount(Account account) {
 		account.setId(null);
+		account.setEmail(account.getEmail().trim().toLowerCase());
+		if (!accountRepository.findByEmailIgnoreCase(account.getEmail()).isEmpty()) {
+			throw new IllegalArgumentException("An account with this email already exists. Please sign in.");
+		}
+		if (account.getRole() == null || account.getRole().isBlank()) {
+			account.setRole("USER");
+		}
 		account.setCreatedAt(LocalDateTime.now());
 		return accountRepository.save(account);
 	}
@@ -76,9 +92,16 @@ public class AirbnbServiceImplements implements AirbnbServiceInterface {
 	}
 
 	@Override
+	public List<Account> findAllAccounts() {
+		return accountRepository.findAll();
+	}
+
+	@Override
 	public Account authenticate(String email, String password) {
-		Account account = accountRepository.findByEmail(email);
-		return account != null && account.getPassword().equals(password) ? account : null;
+		return accountRepository.findByEmailIgnoreCase(email.trim()).stream()
+				.filter(account -> account.getPassword() != null && account.getPassword().equals(password))
+				.findFirst()
+				.orElse(null);
 	}
 
 	@Override
@@ -93,6 +116,7 @@ public class AirbnbServiceImplements implements AirbnbServiceInterface {
 	@Override
 	public Airbnb save(Airbnb listing) {
 		listing.setId(null);
+		listing.setArchived(false);
 		return repository.save(listing);
 	}
 
@@ -102,6 +126,8 @@ public class AirbnbServiceImplements implements AirbnbServiceInterface {
 			current.setTag(listing.getTag());
 			current.setTitle(listing.getTitle());
 			current.setLocation(listing.getLocation());
+			current.setCountry(listing.getCountry());
+			current.setState(listing.getState());
 			current.setPrice(listing.getPrice());
 			current.setRating(listing.getRating());
 			current.setReviews(listing.getReviews());
@@ -112,10 +138,10 @@ public class AirbnbServiceImplements implements AirbnbServiceInterface {
 
 	@Override
 	public boolean delete(Integer id) {
-		if (!repository.existsById(id)) {
-			return false;
-		}
-		repository.deleteById(id);
-		return true;
+		return repository.findById(id).map(listing -> {
+			listing.setArchived(true);
+			repository.save(listing);
+			return true;
+		}).orElse(false);
 	}
 }

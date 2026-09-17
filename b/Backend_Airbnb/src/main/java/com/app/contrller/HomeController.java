@@ -57,6 +57,11 @@ public class HomeController {
 		return service.findAllBookings();
 	}
 
+	@GetMapping("/accounts/{id}/bookings")
+	public List<Booking> getAccountBookings(@PathVariable Integer id) {
+		return service.findBookingsByAccount(id);
+	}
+
 	@DeleteMapping("/bookings/{id}")
 	public ResponseEntity<Void> deleteBooking(@PathVariable Integer id) {
 		return service.deleteBooking(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
@@ -71,6 +76,11 @@ public class HomeController {
 	public ResponseEntity<Account> getAccount(@PathVariable Integer id) {
 		Account account = service.findAccountById(id);
 		return account == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(account);
+	}
+
+	@GetMapping("/accounts")
+	public List<Account> getAllAccounts() {
+		return service.findAllAccounts();
 	}
 
 	@PostMapping("/accounts/login")
