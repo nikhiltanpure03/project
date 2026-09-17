@@ -38,8 +38,16 @@ public class AirbnbServiceImplements implements AirbnbServiceInterface {
 	@Override
 	public Booking createBooking(Booking booking) {
 		booking.setId(null);
-		Airbnb listing = repository.findById(booking.getListingId())
-				.orElseThrow(() -> new IllegalArgumentException("Listing not found: " + booking.getListingId()));
+		Airbnb listing = repository.findById(booking.getListingId()).orElse(null);
+		if (listing == null && booking.getListingData() != null) {
+			listing = booking.getListingData();
+			listing.setId(null);
+			listing = repository.save(listing);
+		}
+		if (listing == null) {
+			throw new IllegalArgumentException("Listing not found: " + booking.getListingId());
+		}
+		booking.setListingId(listing.getId());
 		booking.setAirbnb(listing);
 		booking.setListingTitle(listing.getTitle());
 		booking.setCreatedAt(LocalDateTime.now());

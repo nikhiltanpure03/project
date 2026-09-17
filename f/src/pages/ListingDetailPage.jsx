@@ -29,6 +29,7 @@ function ListingDetailPage() {
     try {
       await createBooking({
         listingId: stay.id,
+        listing: stay,
         checkIn: booking.checkIn,
         checkOut: booking.checkOut,
         billing: {
@@ -47,8 +48,12 @@ function ListingDetailPage() {
         },
       })
       setPaid(true)
-    } catch {
-      setBookingError('We could not save your booking. Please start the backend and try again.')
+    } catch (error) {
+      const responseMessage = error.response?.data
+      const detail = typeof responseMessage === 'string' ? responseMessage : responseMessage?.message
+      setBookingError(detail || (error.request && !error.response
+        ? 'The booking server could not be reached at http://localhost:8080. Start the backend on port 8080 and try again.'
+        : 'We could not save your booking. Please check the booking details and try again.'))
     } finally {
       setSavingBooking(false)
     }

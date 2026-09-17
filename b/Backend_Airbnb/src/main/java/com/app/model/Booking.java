@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Transient;
 
 @Entity
 public class Booking {
@@ -26,6 +28,10 @@ public class Booking {
 	private LocalDate checkOut;
 	private LocalDateTime createdAt;
 	private String status;
+
+	@Transient
+	@JsonProperty(value = "listing", access = JsonProperty.Access.WRITE_ONLY)
+	private Airbnb listingData;
 
 	@JsonIgnore
 	@ManyToOne
@@ -55,6 +61,8 @@ public class Booking {
 	public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 	public String getStatus() { return status; }
 	public void setStatus(String status) { this.status = status; }
+	public Airbnb getListingData() { return listingData; }
+	public void setListingData(Airbnb listingData) { this.listingData = listingData; }
 	public Airbnb getAirbnb() { return airbnb; }
 	public void setAirbnb(Airbnb airbnb) { this.airbnb = airbnb; }
 	public Billing getBilling() { return billing; }

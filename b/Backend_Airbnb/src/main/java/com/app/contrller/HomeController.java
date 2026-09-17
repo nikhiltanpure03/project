@@ -31,6 +31,11 @@ public class HomeController {
 		this.service = service;
 	}
 
+	@GetMapping("/start")
+	public String home() {
+		return "Welcome to the Airbnb API!";
+	}
+
 	@GetMapping("/listings")
 	public List<Airbnb> getAllListings() {
 		return service.findAll();

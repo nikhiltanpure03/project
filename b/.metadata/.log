@@ -1,267 +1,28 @@
-
-!ENTRY org.eclipse.core.resources 4 2 2026-09-16 15:09:15.751
-!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
-!STACK 1
-org.eclipse.core.runtime.CoreException: Problems while saving variables and containers
-	at org.eclipse.jdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:4475)
-	at org.eclipse.jdt.internal.core.JavaModelManager.savingTimed(JavaModelManager.java:4747)
-	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4733)
-	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:466)
-	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:271)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:274)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1284)
-	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2549)
-	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:493)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
-Caused by: java.io.FileNotFoundException: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.jdt.core\variablesAndContainers.dat (The system cannot find the path specified)
-	at java.base/java.io.FileOutputStream.open0(Native Method)
-	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
-	at org.eclipse.jdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:4470)
-	... 10 more
-!SUBENTRY 1 org.eclipse.jdt.core 4 4 2026-09-16 15:09:15.756
-!MESSAGE Problems while saving variables and containers
-!STACK 0
-java.io.FileNotFoundException: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.jdt.core\variablesAndContainers.dat (The system cannot find the path specified)
-	at java.base/java.io.FileOutputStream.open0(Native Method)
-	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
-	at org.eclipse.jdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:4470)
-	at org.eclipse.jdt.internal.core.JavaModelManager.savingTimed(JavaModelManager.java:4747)
-	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4733)
-	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:466)
-	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:271)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:274)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1284)
-	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2549)
-	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:493)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
-!SUBENTRY 1 org.eclipse.jdt.core 4 4 2026-09-16 15:09:15.756
-!MESSAGE Problems while saving variables and containers
-!STACK 0
-java.io.FileNotFoundException: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.jdt.core\variablesAndContainers.dat (The system cannot find the path specified)
-	at java.base/java.io.FileOutputStream.open0(Native Method)
-	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
-	at org.eclipse.jdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:4470)
-	at org.eclipse.jdt.internal.core.JavaModelManager.savingTimed(JavaModelManager.java:4747)
-	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4733)
-	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:466)
-	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:271)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:274)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1284)
-	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2549)
-	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:493)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
-
-!ENTRY org.eclipse.m2e.logback.appender 4 0 2026-09-16 15:09:15.804
-!MESSAGE Can't write workspace state
-!STACK 0
-java.io.FileNotFoundException: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.m2e.core\workspaceState.ser (The system cannot find the path specified)
-	at java.base/java.io.FileOutputStream.open0(Native Method)
-	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryReader.createObjectOutputStream(ProjectRegistryReader.java:127)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryReader.writeWorkspaceState(ProjectRegistryReader.java:116)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.writeWorkspaceState(ProjectRegistryManager.java:1052)
-	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.saving(ProjectRegistryManager.java:1203)
-	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:466)
-	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:271)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:274)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1284)
-	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2549)
-	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:493)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
-
-!ENTRY org.eclipse.core.resources 4 2 2026-09-16 15:09:15.810
-!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
-!STACK 1
-org.eclipse.core.runtime.CoreException: Problems while saving variables and containers
-	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3316)
-	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3559)
-	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:466)
-	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:271)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:274)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1284)
-	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2549)
-	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:493)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
-Caused by: java.io.FileNotFoundException: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.wst.jsdt.core\variablesAndContainers.dat (The system cannot find the path specified)
-	at java.base/java.io.FileOutputStream.open0(Native Method)
-	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
-	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3244)
-	... 9 more
-!SUBENTRY 1 org.eclipse.wst.jsdt.core 4 4 2026-09-16 15:09:15.810
-!MESSAGE Problems while saving variables and containers
-!STACK 0
-java.io.FileNotFoundException: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.wst.jsdt.core\variablesAndContainers.dat (The system cannot find the path specified)
-	at java.base/java.io.FileOutputStream.open0(Native Method)
-	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
-	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3244)
-	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3559)
-	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:466)
-	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:271)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:274)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1284)
-	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2549)
-	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:493)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
-!SUBENTRY 1 org.eclipse.wst.jsdt.core 4 4 2026-09-16 15:09:15.810
-!MESSAGE Problems while saving variables and containers
-!STACK 0
-java.io.FileNotFoundException: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.wst.jsdt.core\variablesAndContainers.dat (The system cannot find the path specified)
-	at java.base/java.io.FileOutputStream.open0(Native Method)
-	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
-	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3244)
-	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3559)
-	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:466)
-	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:271)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:274)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1284)
-	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2549)
-	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:493)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
-
-!ENTRY org.eclipse.jdt.launching 4 4 2026-09-16 15:09:15.858
-!MESSAGE The system cannot find the path specified
-!STACK 0
-java.io.IOException: The system cannot find the path specified
-	at java.base/java.io.WinNTFileSystem.createFileExclusively0(Native Method)
-	at java.base/java.io.WinNTFileSystem.createFileExclusively(WinNTFileSystem.java:536)
-	at java.base/java.io.File.createNewFile(File.java:1045)
-	at org.eclipse.jdt.internal.launching.LaunchingPlugin.writeInstallInfo(LaunchingPlugin.java:1110)
-	at org.eclipse.jdt.internal.launching.LaunchingPlugin$1$1.saving(LaunchingPlugin.java:584)
-	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:466)
-	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:271)
-	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
-	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:274)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1284)
-	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2549)
-	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:493)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
-
-!ENTRY org.eclipse.ui.ide 4 0 2026-09-16 15:09:17.540
-!MESSAGE Problems saving workspace
-
-!ENTRY org.eclipse.ui.ide 4 1 2026-09-16 15:09:17.542
-!MESSAGE Problems occurred while trying to save the state of the workbench.
-!SUBENTRY 1 org.eclipse.core.resources 4 568 2026-09-16 15:09:17.542
-!MESSAGE Could not write workspace metadata 'F:/New Project/Full/b/.metadata/.plugins/org.eclipse.core.resources/.root/1.tree'.
-!STACK 0
-java.io.FileNotFoundException: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.core.resources\.root\1.tree (The system cannot find the path specified)
-	at java.base/java.io.FileOutputStream.open0(Native Method)
-	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
-	at org.eclipse.core.internal.localstore.SafeFileOutputStream.<init>(SafeFileOutputStream.java:55)
-	at org.eclipse.core.internal.resources.SaveManager.saveTree(SaveManager.java:1491)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1288)
-	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2549)
-	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.lambda$1(IDEWorkbenchAdvisor.java:493)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:123)
-
-!ENTRY org.eclipse.wst.jsdt.ui 4 10001 2026-09-16 15:09:18.497
-!MESSAGE Internal Error
-!STACK 0
-java.io.FileNotFoundException: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.wst.jsdt.ui\QualifiedTypeNameHistory.xml (The system cannot find the path specified)
-	at java.base/java.io.FileOutputStream.open0(Native Method)
-	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
-	at org.eclipse.wst.jsdt.internal.corext.util.History.save(History.java:182)
-	at org.eclipse.wst.jsdt.internal.ui.JavaScriptPlugin.stop(JavaScriptPlugin.java:566)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:908)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:900)
-	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1096)
-	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:399)
-	at org.eclipse.osgi.container.Module.doStop(Module.java:699)
-	at org.eclipse.osgi.container.Module.stop(Module.java:557)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2153)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:2022)
-	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
-	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:225)
-	at org.eclipse.osgi.container.Module.doStop(Module.java:699)
-	at org.eclipse.osgi.container.Module.stop(Module.java:557)
-	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
-	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:244)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-
-!ENTRY org.eclipse.wst.jsdt.ui 4 10001 2026-09-16 15:09:18.501
-!MESSAGE Internal Error
-!STACK 0
-java.io.FileNotFoundException: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.wst.jsdt.ui\OpenTypeHistory.xml (The system cannot find the path specified)
-	at java.base/java.io.FileOutputStream.open0(Native Method)
-	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:289)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:230)
-	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:179)
-	at org.eclipse.wst.jsdt.internal.corext.util.History.save(History.java:182)
-	at org.eclipse.wst.jsdt.internal.corext.util.OpenTypeHistory.doShutdown(OpenTypeHistory.java:372)
-	at org.eclipse.wst.jsdt.internal.corext.util.OpenTypeHistory.shutdown(OpenTypeHistory.java:183)
-	at org.eclipse.wst.jsdt.internal.ui.JavaScriptPlugin.stop(JavaScriptPlugin.java:570)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:908)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl$3.run(BundleContextImpl.java:1)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
-	at org.eclipse.osgi.internal.framework.BundleContextImpl.stop(BundleContextImpl.java:900)
-	at org.eclipse.osgi.internal.framework.EquinoxBundle.stopWorker0(EquinoxBundle.java:1096)
-	at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.stopWorker(EquinoxBundle.java:399)
-	at org.eclipse.osgi.container.Module.doStop(Module.java:699)
-	at org.eclipse.osgi.container.Module.stop(Module.java:557)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.decStartLevel(ModuleContainer.java:2153)
-	at org.eclipse.osgi.container.ModuleContainer$ContainerStartLevel.doContainerStartLevel(ModuleContainer.java:2022)
-	at org.eclipse.osgi.container.SystemModule.stopWorker(SystemModule.java:281)
-	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule.stopWorker(EquinoxBundle.java:225)
-	at org.eclipse.osgi.container.Module.doStop(Module.java:699)
-	at org.eclipse.osgi.container.Module.stop(Module.java:557)
-	at org.eclipse.osgi.container.SystemModule.stop(SystemModule.java:212)
-	at org.eclipse.osgi.internal.framework.EquinoxBundle$SystemBundle$EquinoxSystemModule$1.run(EquinoxBundle.java:244)
-	at java.base/java.lang.Thread.run(Thread.java:1583)
-
-!ENTRY org.eclipse.core.resources 2 10035 2026-09-16 15:09:20.251
-!MESSAGE The workspace will exit with unsaved changes in this session.
-!SESSION 2026-09-16 15:09:21.121 -----------------------------------------------
+!SESSION 2026-09-17 10:18:19.614 -----------------------------------------------
 eclipse.buildId=4.40.0.20260604-0652
 java.version=21.0.11
 java.vendor=Eclipse Adoptium
 BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
 Framework arguments:  -product org.eclipse.epp.package.java.product
-Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product -data F:\New Project\Full\b
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
 
-!ENTRY ch.qos.logback.classic 1 0 2026-09-16 15:09:30.784
+!ENTRY ch.qos.logback.classic 1 0 2026-09-17 10:20:05.276
 !MESSAGE Activated before the state location was initialized. Retry after the state location is initialized.
 
-!ENTRY ch.qos.logback.classic 1 0 2026-09-16 15:09:36.247
+!ENTRY ch.qos.logback.classic 1 0 2026-09-17 10:20:11.258
 !MESSAGE Logback config file: F:\New Project\Full\b\.metadata\.plugins\org.eclipse.m2e.logback\logback.2.7.101.20251017-1242.xml
 
-!ENTRY org.eclipse.ui 2 0 2026-09-16 15:09:37.670
+!ENTRY org.eclipse.ui 2 0 2026-09-17 10:20:12.488
 !MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
-!SUBENTRY 1 org.eclipse.ui 2 0 2026-09-16 15:09:37.670
+!SUBENTRY 1 org.eclipse.ui 2 0 2026-09-17 10:20:12.488
 !MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
 
-!ENTRY org.eclipse.ui 2 0 2026-09-16 15:09:38.602
+!ENTRY org.eclipse.ui 2 0 2026-09-17 10:20:13.567
 !MESSAGE Warnings while parsing the commands from the 'org.eclipse.ui.commands' and 'org.eclipse.ui.actionDefinitions' extension points.
-!SUBENTRY 1 org.eclipse.ui 2 0 2026-09-16 15:09:38.602
+!SUBENTRY 1 org.eclipse.ui 2 0 2026-09-17 10:20:13.568
 !MESSAGE Commands should really have a category: plug-in='org.springframework.tooling.boot.ls', id='spring.initializr.addStarters', categoryId='org.eclipse.lsp4e.commandCategory'
 
-!ENTRY org.eclipse.egit.ui 2 0 2026-09-16 15:10:00.219
+!ENTRY org.eclipse.egit.ui 2 0 2026-09-17 10:20:38.479
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\ADMIN'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
