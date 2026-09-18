@@ -1,6 +1,7 @@
 function GuestCountField({ value, onChange }) {
   return (
-    <label>Guests
+    <label>
+      Guests
       <select name="guests" value={value} onChange={onChange}>
         <option value="1">1 guest</option>
         <option value="2">2 guests</option>
@@ -8,7 +9,7 @@ function GuestCountField({ value, onChange }) {
         <option value="4">4 guests</option>
       </select>
     </label>
-  )
+  );
 }
 
-export default GuestCountField
+export default GuestCountField;

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function ExperienceSection({ experiences }) {
   return (
@@ -23,7 +23,7 @@ function ExperienceSection({ experiences }) {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
-export default ExperienceSection
+export default ExperienceSection;

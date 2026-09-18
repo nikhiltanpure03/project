@@ -1,5 +1,5 @@
-import DateFields from '../fields/DateFields'
-import GuestCountField from '../fields/GuestCountField'
+import DateFields from "../fields/DateFields";
+import GuestCountField from "../fields/GuestCountField";
 
 function BookingFields({ checkIn, checkOut, guests, onChange }) {
   return (
@@ -7,7 +7,7 @@ function BookingFields({ checkIn, checkOut, guests, onChange }) {
       <DateFields checkIn={checkIn} checkOut={checkOut} onChange={onChange} />
       <GuestCountField value={guests} onChange={onChange} />
     </section>
-  )
+  );
 }
 
-export default BookingFields
+export default BookingFields;

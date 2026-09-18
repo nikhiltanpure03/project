@@ -1,8 +1,8 @@
-import Header from '../components/Header'
-import HeroSection from '../components/HeroSection'
-import FeatureBanner from '../components/FeatureBanner'
-import ExperienceSection from '../components/ExperienceSection'
-import { experiences, perks } from '../data/listings'
+import Header from "../components/Header";
+import HeroSection from "../components/HeroSection";
+import FeatureBanner from "../components/FeatureBanner";
+import ExperienceSection from "../components/ExperienceSection";
+import { experiences, perks } from "../data/listings";
 
 function HomePage() {
   return (
@@ -15,7 +15,7 @@ function HomePage() {
         <ExperienceSection experiences={experiences} />
       </main>
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

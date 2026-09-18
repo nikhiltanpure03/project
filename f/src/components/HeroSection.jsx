@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const stats = [
-  { value: '2.4k+', label: 'guest homes' },
-  { value: '4.9/5', label: 'average rating' },
-  { value: '120+', label: 'global cities' },
-]
+  { value: "2.4k+", label: "guest homes" },
+  { value: "4.9/5", label: "average rating" },
+  { value: "120+", label: "global cities" },
+];
 
 function HeroSection() {
   return (
@@ -13,8 +13,8 @@ function HeroSection() {
         <p className="eyebrow">Plan a different kind of getaway</p>
         <h1>Find the perfect stay for your next adventure.</h1>
         <p className="hero-text">
-          Explore handpicked homes, scenic cabins, and design-forward escapes with
-          thoughtful comforts and welcoming hosts.
+          Explore handpicked homes, scenic cabins, and design-forward escapes
+          with thoughtful comforts and welcoming hosts.
         </p>
 
         <div className="hero-actions">
@@ -48,7 +48,7 @@ function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default HeroSection
+export default HeroSection;

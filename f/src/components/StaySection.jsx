@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function StaySection({ stays }) {
   return (
@@ -13,7 +13,11 @@ function StaySection({ stays }) {
 
       <div className="stay-grid">
         {stays.map((stay) => (
-          <Link to={`/listing/${stay.id}`} key={stay.id} className="stay-card-link">
+          <Link
+            to={`/listing/${stay.id}`}
+            key={stay.id}
+            className="stay-card-link"
+          >
             <article className="stay-card">
               <div className="card-image-wrap">
                 <img src={stay.image} alt={stay.title} />
@@ -47,7 +51,7 @@ function StaySection({ stays }) {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
-export default StaySection
+export default StaySection;

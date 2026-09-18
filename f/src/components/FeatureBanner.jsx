@@ -12,7 +12,7 @@ function FeatureBanner({ perks }) {
         ))}
       </ul>
     </section>
-  )
+  );
 }
 
-export default FeatureBanner
+export default FeatureBanner;

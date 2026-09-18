@@ -54,6 +54,8 @@ public class AirbnbServiceImplements implements AirbnbServiceInterface {
 		booking.setAirbnb(listing);
 		booking.setListingTitle(listing.getTitle());
 		booking.setListingLocation(listing.getLocation());
+		booking.setListingState(listing.getState());
+		booking.setListingCountry(listing.getCountry());
 		booking.setCreatedAt(LocalDateTime.now());
 		booking.setStatus("CONFIRMED");
 		if (booking.getPayment() != null) {

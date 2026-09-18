@@ -1,17 +1,17 @@
-const SESSION_KEY = 'airbnb-account'
+const SESSION_KEY = "airbnb-account";
 
 export function getCurrentAccount() {
   try {
-    return JSON.parse(localStorage.getItem(SESSION_KEY))
+    return JSON.parse(localStorage.getItem(SESSION_KEY));
   } catch {
-    return null
+    return null;
   }
 }
 
 export function saveCurrentAccount(account) {
-  localStorage.setItem(SESSION_KEY, JSON.stringify(account))
+  localStorage.setItem(SESSION_KEY, JSON.stringify(account));
 }
 
 export function clearCurrentAccount() {
-  localStorage.removeItem(SESSION_KEY)
+  localStorage.removeItem(SESSION_KEY);
 }

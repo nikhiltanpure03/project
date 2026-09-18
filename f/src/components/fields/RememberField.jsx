@@ -1,5 +1,9 @@
 function RememberField() {
-  return <label className="remember-option"><input type="checkbox" /> Remember me</label>
+  return (
+    <label className="remember-option">
+      <input type="checkbox" /> Remember me
+    </label>
+  );
 }
 
-export default RememberField
+export default RememberField;

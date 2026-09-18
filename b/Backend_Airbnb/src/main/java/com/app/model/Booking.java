@@ -25,6 +25,8 @@ public class Booking {
 	private Integer listingId;
 	private String listingTitle;
 	private String listingLocation;
+	private String listingState;
+	private String listingCountry;
 	private LocalDate checkIn;
 	private LocalDate checkOut;
 	private LocalDateTime createdAt;
@@ -59,6 +61,10 @@ public class Booking {
 	public void setListingTitle(String listingTitle) { this.listingTitle = listingTitle; }
 	public String getListingLocation() { return listingLocation; }
 	public void setListingLocation(String listingLocation) { this.listingLocation = listingLocation; }
+	public String getListingState() { return listingState; }
+	public void setListingState(String listingState) { this.listingState = listingState; }
+	public String getListingCountry() { return listingCountry; }
+	public void setListingCountry(String listingCountry) { this.listingCountry = listingCountry; }
 	public LocalDate getCheckIn() { return checkIn; }
 	public void setCheckIn(LocalDate checkIn) { this.checkIn = checkIn; }
 	public LocalDate getCheckOut() { return checkOut; }
