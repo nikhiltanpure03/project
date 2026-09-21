@@ -43,28 +43,49 @@ function DiscoverPage() {
   const filteredStays = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     return availableStays.filter((stay) => {
+      const searchableLocation = [stay.location, stay.state, stay.country]
+        .filter(Boolean)
+        .join(" ");
+      const locationParts = String(stay.location || "")
+        .split(",")
+        .map((part) => part.trim())
+        .filter(Boolean);
+      const listingRegions = [
+        stay.state,
+        stay.country,
+        !stay.state && !stay.country ? locationParts.at(-1) : null,
+      ]
+        .filter(Boolean)
+        .map((value) => value.toLowerCase());
       const matchesQuery =
         !normalizedQuery ||
-        `${stay.title} ${stay.location}`
+        `${stay.title} ${searchableLocation}`
           .toLowerCase()
           .includes(normalizedQuery);
       const matchesRegion =
-        (region === "Maharashtra" && /Maharashtra/i.test(stay.location)) ||
-        (region === "Goa" && /Goa/i.test(stay.location)) ||
-        (region === "Rajasthan" && /Rajasthan/i.test(stay.location)) ||
-        (region === "Delhi" && /Delhi/i.test(stay.location)) ||
-        (region === "Kerala" && /Kerala/i.test(stay.location)) ||
-        (region === "United States" && /United States/i.test(stay.location)) ||
-        (region === "United Kingdom" &&
-          /United Kingdom/i.test(stay.location)) ||
-        (region === "Russia" && /Russia/i.test(stay.location)) ||
-        (region === "Dubai" && /Dubai/i.test(stay.location)) ||
-        (region === "Japan" && /Japan/i.test(stay.location));
+        region && listingRegions.includes(region.toLowerCase());
       return matchesQuery && (region ? matchesRegion : isAdmin);
     });
   }, [availableStays, isAdmin, query, region]);
 
   const selectedLocation = region;
+  const visibleStays = filteredStays
+    .filter((stay, index, listings) => {
+      const city = String(stay.location || stay.title)
+        .split(",")[0]
+        .trim()
+        .toLowerCase();
+      return (
+        listings.findIndex(
+          (listing) =>
+            String(listing.location || listing.title)
+              .split(",")[0]
+              .trim()
+              .toLowerCase() === city,
+        ) === index
+      );
+    })
+    .slice(0, 12);
 
   return (
     <div className="page-shell">
@@ -116,8 +137,8 @@ function DiscoverPage() {
           </div>
         </section>
 
-        {filteredStays.length > 0 && (selectedLocation || isAdmin) ? (
-          <StaySection stays={filteredStays} />
+        {visibleStays.length > 0 && (selectedLocation || isAdmin) ? (
+          <StaySection stays={visibleStays} />
         ) : (
           <div className="detail-empty">
             <h2>

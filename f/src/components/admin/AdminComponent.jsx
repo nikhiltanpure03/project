@@ -579,10 +579,6 @@ function AdminComponent() {
                             , {listing.country || "Country not set"}
                           </span>
                         </div>
-                        <span>
-                          {listing.location ||
-                            `${listing.state || ""}, ${listing.country || ""}`}
-                        </span>
                         <strong>
                           ₹{Number(listing.price || 0).toLocaleString()} / night
                         </strong>
